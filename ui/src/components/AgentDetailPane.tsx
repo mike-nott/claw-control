@@ -609,7 +609,7 @@ function renderDetail(
       "comms-scan":              { name: "Comms Scan",              emoji: "📡", desc: "Scan email, Slack, WhatsApp, and iMessage for new activity" },
       "urgent-detection":        { name: "Urgent Detection",        emoji: "🔴", desc: "Identify time-sensitive messages requiring immediate attention" },
       "response-tracker":        { name: "Response Tracker",        emoji: "📬", desc: "Track unanswered messages and flag items needing a reply" },
-      "pipeline-check":          { name: "Pipeline Check",          emoji: "🔧", desc: "Monitor data pipeline health: embeddings, backups, sync status" },
+      "pipeline-check":          { name: "Pipeline Check",          emoji: "🔧", desc: "Monitor data pipeline health" },
       "overnight-memory":        { name: "Overnight Memory",        emoji: "🌙", desc: "Process overnight transcripts and update curated memory files" },
       "github-backup":           { name: "GitHub Backup",           emoji: "💾", desc: "Automated backup of workspace and config to GitHub" },
       "system-health":           { name: "System Health",           emoji: "⚙️", desc: "Monitor system resources, services, and infrastructure status" },

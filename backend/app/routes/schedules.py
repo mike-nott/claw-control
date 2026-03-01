@@ -26,36 +26,21 @@ LAUNCH_AGENTS_DIR = Path.home() / "Library" / "LaunchAgents"
 GUI_UID = os.getuid()
 
 LAUNCHD_REGISTRY: dict[str, dict[str, Any]] = {
-    "com.openclaw.data-collector-imessage": {"task": "iMessage Collector", "agent": "archive", "model": None, "schedule_human": "every 5 min"},
-    "com.openclaw.data-collector-whatsapp": {"task": "WhatsApp Collector", "agent": "archive", "model": None, "schedule_human": "every 5 min"},
-    "com.openclaw.data-collector-slack": {"task": "Slack Collector", "agent": "archive", "model": None, "schedule_human": "every 1 hr"},
-    "com.openclaw.data-collector-calendar": {"task": "Calendar Collector", "agent": "archive", "model": None, "schedule_human": "every 1 hr"},
-    "com.openclaw.email-collector": {"task": "Email Collector", "agent": "archive", "model": None, "schedule_human": "continuous"},
-    "com.openclaw.data-collector-notes": {"task": "Notes Collector", "agent": "archive", "model": None, "schedule_human": "every 1 hr"},
-    "com.openclaw.data-collector-photos": {"task": "Photos Collector", "agent": "archive", "model": None, "schedule_human": "daily"},
-    "com.openclaw.transcript-distiller": {"task": "Transcript Distiller", "agent": "archive", "model": "Qwen3.5 35B A3B", "schedule_human": "3am daily"},
-    "com.openclaw.health-collector": {"task": "Health Collector", "agent": "health", "model": None, "schedule_human": "every 15 min"},
-    "com.openclaw.security-processor": {"task": "Security Processor", "agent": "security", "model": "Qwen3.5 35B A3B", "schedule_human": "event-driven"},
-    "com.openclaw.backup-lancedb": {"task": "LanceDB Backup", "agent": "system", "model": None, "schedule_human": "daily"},
-    "com.openclaw.backup-secrets": {"task": "Secrets Backup", "agent": "system", "model": None, "schedule_human": "daily"},
-    "com.openclaw.backup-mc-db": {"task": "MC Database Backup", "agent": "system", "model": None, "schedule_human": "daily"},
-    "com.openclaw.backup-paperless": {"task": "Paperless Backup", "agent": "system", "model": None, "schedule_human": "daily"},
-    "com.openclaw.lance-compact": {"task": "Lance Compaction", "agent": "system", "model": None, "schedule_human": "daily"},
-    "com.openclaw.scrapling-mcp": {"task": "Scrapling MCP", "agent": "system", "model": None, "schedule_human": "continuous"},
-    "com.openclaw.token-monitor": {"task": "Token Monitor", "agent": "system", "model": None, "schedule_human": "continuous"},
-    "com.openclaw.mission-control-backend": {"task": "ClawControl Backend", "agent": "system", "model": None, "schedule_human": "continuous"},
-    "com.openclaw.mission-control-ui": {"task": "ClawControl Frontend", "agent": "system", "model": None, "schedule_human": "continuous"},
+    # Map your launchd plist labels to friendly display names.
+    # Services not listed here will auto-generate names from the label.
+    #
+    # "com.openclaw.my-backend": {"task": "My Backend", "agent": "system", "model": None, "schedule_human": "continuous"},
+    # "com.openclaw.my-collector": {"task": "Data Collector", "agent": "archive", "model": None, "schedule_human": "every 5 min"},
 }
 
 # Model display name mapping
 MODEL_DISPLAY: dict[str, str] = {
-    "local-ollama/kimi-k2.5:cloud": "Kimi K2.5",
-    "ollama-cloud/kimi-k2.5": "Kimi K2.5",
-    "local-ai/Qwen3.5-35B-A3B-Q8_0.gguf": "Qwen3.5 35B A3B",
-    "dgx-spark/Qwen3.5-122B-A10B-UD-Q6_K_XL.gguf": "Qwen3.5 122B A10B",
-    "anthropic/claude-opus-4-6": "Opus 4.6",
-    "anthropic/claude-sonnet-4-6": "Sonnet 4.6",
-    "openai/gpt-5.2": "GPT-5.2",
+    # Map model identifiers to short display names.
+    # Models not listed here will auto-shorten from the provider/model string.
+    #
+    # "anthropic/claude-opus-4": "Opus 4",
+    # "openai/gpt-4o": "GPT-4o",
+    # "local/my-model": "My Model",
 }
 
 STATUS_ORDER = {"error": 0, "late": 1, "running": 2, "ok": 3, "idle": 4, "disabled": 5}
