@@ -1,0 +1,46 @@
+# ClawControl Agent Configuration
+#
+# Map your OpenClaw agent IDs to display names, emojis, teams, and bios.
+# ClawControl reads this file on startup — changes take effect on restart.
+#
+# Agent IDs must match the agent IDs in your OpenClaw config (openclaw.json).
+# Any agent not listed here will show as the default (🤖 Agent).
+
+# Display order (agent IDs in the order they appear in the UI)
+display_order:
+  - main
+  - monitor
+  - researcher
+  - writer
+
+# Agent definitions
+agents:
+  main:
+    name: "Atlas"
+    emoji: "🧭"
+    team: "Assistants"
+    title: "Chief of Staff"
+    bio: "Primary assistant. Coordinates other agents, handles direct requests, manages memory."
+  monitor:
+    name: "Watchdog"
+    emoji: "👁️"
+    team: "Operations"
+    title: "System Monitor"
+    bio: "Monitors system health and reports issues. Runs on a schedule."
+  researcher:
+    name: "Scout"
+    emoji: "🔍"
+    team: "Workers"
+    title: "Research Lead"
+    bio: "Deep research and analysis. Web search, data gathering, competitive intelligence."
+  writer:
+    name: "Scribe"
+    emoji: "✍️"
+    team: "Workers"
+    title: "Content Writer"
+    bio: "Content creation across formats. Blog posts, docs, social media, email."
+
+# Default display for agents not listed above
+default_name: "Agent"
+default_emoji: "🤖"
+default_team: "Other"

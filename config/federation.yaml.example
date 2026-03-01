@@ -1,0 +1,17 @@
+# ClawControl Federation Configuration
+#
+# This file is auto-managed by ClawControl when you connect to other instances.
+# You can also edit it manually.
+#
+# To connect to another ClawControl instance:
+#   1. Both instances must be network-reachable (e.g. same Tailscale network)
+#   2. Use the Connections page in the UI, or the API: POST /api/federation/invite
+#
+# connections:
+#   - id: "uuid"
+#     name: "Team B"
+#     endpoint: "https://their-host:8088"
+#     agent_map:
+#       their-agent-id: "Display Name"
+#     status_map:
+#       their-status: "our-status"

@@ -1,0 +1,56 @@
+# Python
+backend/.venv/
+backend/__pycache__/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Node
+ui/node_modules/
+ui/dist/
+node_modules/
+dist/
+.vite/
+
+# Environment
+.env
+.env.local
+backend/.env
+ui/.env
+
+# Data
+*.lance/
+*.db
+*.sqlite
+media/
+*.log
+
+# Assets (user-provided)
+ui/public/assets/pixel-art/
+ui/public/avatars/
+ui/public/main.png
+
+# Tests (no tests yet)
+backend/tests/
+
+# Pre-Alembic migration
+backend/migrations/004_teams_and_members.sql
+
+# Build artifacts
+*.tsbuildinfo
+
+# Config (instance-specific)
+config/federation.yaml
+config/instance.yaml
+
+# Audit reports
+AUDIT-REPORT.md
+AUDIT-FINAL.md
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/

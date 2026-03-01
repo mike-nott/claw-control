@@ -1,0 +1,80 @@
+@import "./mission.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--mc-surface-0);
+  color: var(--mc-text-body);
+  font-family: -apple-system, system-ui, sans-serif;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+/* Markdown prose overrides — theme-aware via CSS variables. */
+.mc-prose {
+  color: var(--mc-text-body);
+  font-size: 14px;
+  line-height: 1.6;
+}
+.mc-prose h1 { color: var(--mc-text-primary); font-size: 1.25em; }
+.mc-prose h2 { color: var(--mc-text-primary); font-size: 1.15em; }
+.mc-prose h3 { color: var(--mc-text-primary); font-size: 1.05em; }
+.mc-prose h4, .mc-prose h5, .mc-prose h6 {
+  color: var(--mc-text-primary);
+}
+.mc-prose strong, .mc-prose b {
+  color: var(--mc-text-primary);
+}
+.mc-prose a {
+  color: var(--mc-blue-light);
+}
+.mc-prose code {
+  color: var(--mc-text-primary);
+  background: var(--mc-surface-0);
+  padding: 2px 5px;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+.mc-prose pre {
+  color: var(--mc-text-body);
+  background: var(--mc-surface-0);
+  border: 1px solid var(--mc-border-strong);
+  border-radius: 8px;
+}
+.mc-prose pre code {
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+.mc-prose th {
+  color: var(--mc-text-muted);
+  border-bottom-color: var(--mc-border-strong);
+}
+.mc-prose td {
+  color: var(--mc-text-body);
+  border-bottom-color: var(--mc-border-strong);
+}
+.mc-prose blockquote {
+  color: var(--mc-text-muted);
+  border-left-color: var(--mc-border-strong);
+}
+.mc-prose hr {
+  border-color: var(--mc-border-strong);
+}
+.mc-prose li::marker {
+  color: var(--mc-text-faint);
+}
+.mc-prose p, .mc-prose li, .mc-prose dd, .mc-prose dt {
+  color: var(--mc-text-body);
+}
