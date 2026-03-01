@@ -92,7 +92,7 @@ function toSummary(data: Record<string, unknown>): SummaryResponse {
 }
 
 function fmtCost(value: number): string {
-  return value < 0.01 ? `$${value.toFixed(4)}` : `$${value.toFixed(2)}`;
+  return `$${value.toFixed(2)}`;
 }
 
 /* ── Theme subscription (mirrors NavBar's store) ── */
@@ -161,7 +161,7 @@ function buildChartOptions(theme: ReturnType<typeof getChartTheme>) {
       scales,
       plugins: {
         tooltip,
-        legend: { labels: { color: theme.ticks } },
+        legend: { display: false },
       },
     },
     bar: {

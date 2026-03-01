@@ -108,15 +108,19 @@ export default function OrgChartPage() {
 
   const main = agents.find((a) => a.default);
 
+  // Teams to show on the org chart (add/remove as needed)
+  const VISIBLE_TEAMS = ["Assistants", "Operations", "Workers"];
+
   // Group remaining agents by team (excluding the default/main agent)
   const teamGroups: Record<string, AgentConfig[]> = {};
   for (const a of agents) {
     if (a.default) continue;
     const team = a.team || "Other";
+    if (!VISIBLE_TEAMS.includes(team)) continue;
     if (!teamGroups[team]) teamGroups[team] = [];
     teamGroups[team].push(a);
   }
-  const teamNames = Object.keys(teamGroups).sort();
+  const teamNames = VISIBLE_TEAMS.filter((t) => teamGroups[t]?.length > 0);
 
   return (
     <div className="max-w-[1200px] mx-auto">
