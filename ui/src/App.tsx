@@ -9,6 +9,7 @@ import TeamsPage from "./pages/TeamsPage";
 import ControlPlanePage from "./pages/ControlPlanePage";
 import ProjectsPage from "./pages/ProjectsPage";
 import SchedulePage from "./pages/SchedulePage";
+import StatusPage from "./pages/StatusPage";
 import TokensPage from "./pages/TokensPage";
 
 export default function App() {
@@ -17,7 +18,8 @@ export default function App() {
       <main className="mx-auto max-w-[1800px] p-4 lg:p-6">
         <NavBar />
         <Routes>
-          <Route path="/" element={<ControlPlanePage />} />
+          <Route path="/" element={<StatusPage />} />
+          <Route path="/tasks" element={<ControlPlanePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/projects/:projectId" element={<ProjectsPage />} />
           <Route path="/boards/:boardId" element={<ControlPlanePage />} />

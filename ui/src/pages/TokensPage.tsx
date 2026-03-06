@@ -15,6 +15,7 @@ import { Bar, Line } from "react-chartjs-2";
 import { getAgents, getTokenSummary, getTokensByAgent, getTokensByModel, getTokensTimeseries } from "../api";
 import { McFilterBar, McPanel, McSelect, McSectionTitle } from "../components/mc";
 import type { Agent } from "../types";
+import { friendlyTelemetryName } from "../utils/modelNames";
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Filler, Tooltip, Legend);
 
@@ -338,7 +339,7 @@ export default function TokensPage() {
 
   const byModelChartData = useMemo(
     () => ({
-      labels: byModel.slice(0, 12).map((item) => `${item.modelProvider}/${item.model}`),
+      labels: byModel.slice(0, 12).map((item) => friendlyTelemetryName(item.modelProvider, item.model)),
       datasets: [
         {
           label: "Tokens",
@@ -454,7 +455,7 @@ export default function TokensPage() {
             <div style={{ marginTop: "8px", display: "flex", flexDirection: "column", gap: "4px" }}>
               {(summary?.topModels ?? []).map((item) => (
                 <p key={`${item.modelProvider}-${item.model}`} className="mc-text-body" style={{ fontSize: "13px" }}>
-                  {item.modelProvider}/{item.model}:{" "}
+                  {friendlyTelemetryName(item.modelProvider, item.model)}:{" "}
                   <span className="mc-text-faint" style={{ fontVariantNumeric: "tabular-nums" }}>
                     {n(item.tokens)}
                   </span>
@@ -549,8 +550,7 @@ export default function TokensPage() {
             <table style={tableStyle}>
               <thead>
                 <tr>
-                  <th className="mc-th">Provider</th>
-                  <th className="mc-th">Model</th>
+                  <th className="mc-th" colSpan={2}>Model</th>
                   <th className="mc-th">Total</th>
                   <th className="mc-th">Cost</th>
                   <th className="mc-th">Input</th>
@@ -565,10 +565,9 @@ export default function TokensPage() {
                     key={`${row.modelProvider}-${row.model}`}
                     className="mc-hover-row"
                   >
-                    <td className="mc-td mc-text-primary" style={{ fontWeight: 600 }}>
-                      {row.modelProvider}
+                    <td className="mc-td mc-text-primary" style={{ fontWeight: 600 }} colSpan={2}>
+                      {friendlyTelemetryName(row.modelProvider, row.model)}
                     </td>
-                    <td className="mc-td mc-text-primary">{row.model}</td>
                     <td className="mc-td">{n(row.total)}</td>
                     <td className="mc-td">{fmtCost(row.cost)}</td>
                     <td className="mc-td">{n(row.inputTokens)}</td>

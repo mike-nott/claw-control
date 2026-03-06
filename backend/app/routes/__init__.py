@@ -13,6 +13,7 @@ from app.routes.task_attachments import router as task_attachments_router
 from app.routes.tasks import router as tasks_router
 from app.routes.teams import router as teams_router
 from app.routes.tokens import router as tokens_router
+from app.routes.status import router as status_router
 from app.routes.webhooks import router as webhooks_router
 
 __all__ = [
@@ -26,6 +27,7 @@ __all__ = [
     "health_router",
     "projects_router",
     "schedules_router",
+    "status_router",
     "stream_router",
     "task_attachments_router",
     "tasks_router",

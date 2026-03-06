@@ -1,4 +1,5 @@
 import type { AgentConfig } from "../types";
+import { friendlyModelName } from "../utils/modelNames";
 
 interface SelectedBox {
   section: string;
@@ -94,12 +95,10 @@ function isBoxActive(selectedBox: SelectedBox | null, section: string, key: stri
 }
 
 export default function AgentSettingsPanel({ agent, selectedBox, fileCache, onSelectBox }: Props) {
-  const shortModel = agent.model?.primary
-    ? agent.model.primary.split("/").pop() ?? agent.model.primary
-    : "anthropic/claude-opus-4-6";
+  const shortModel = friendlyModelName(agent.model?.primary ?? "anthropic/claude-opus-4-6");
 
   const firstFallback = agent.model?.fallbacks?.[0]
-    ? (agent.model.fallbacks[0].split("/").pop() ?? agent.model.fallbacks[0])
+    ? friendlyModelName(agent.model.fallbacks[0])
     : null;
 
   // Tools preview

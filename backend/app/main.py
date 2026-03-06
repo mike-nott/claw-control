@@ -20,6 +20,7 @@ from app.routes import (
     health_router,
     projects_router,
     schedules_router,
+    status_router,
     stream_router,
     task_attachments_router,
     tasks_router,
@@ -83,6 +84,7 @@ tags_metadata = [
     {"name": "tokens", "description": "Token usage and cost tracking across agents and models."},
     {"name": "stream", "description": "Server-Sent Events for real-time updates."},
     {"name": "health", "description": "Health checks and Prometheus metrics."},
+    {"name": "status", "description": "Live infrastructure status — LLM servers, services, gateway, agents, cron."},
     {"name": "attachments", "description": "File download for task and comment attachments."},
     {"name": "task_attachments", "description": "File upload and management for task attachments."},
     {"name": "federation", "description": "Cross-team collaboration — connect, sync, and share tasks with other ClawControl instances."},
@@ -126,6 +128,7 @@ app.include_router(attachments_router)
 app.include_router(task_attachments_router)
 app.include_router(activities_router)
 app.include_router(schedules_router)
+app.include_router(status_router)
 app.include_router(stream_router)
 app.include_router(tokens_router)
 app.include_router(projects_router)

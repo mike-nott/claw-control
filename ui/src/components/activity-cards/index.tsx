@@ -27,7 +27,7 @@ const cardRegistry: Record<string, ComponentType<ActivityCardProps>> = {
 /** Payload checks — only use the agent-specific card if the data it needs is present. */
 const payloadChecks: Record<string, (p: Record<string, unknown>) => boolean> = {
   security: (p) => !!(p.zone || p.camera || p.detection_type),
-  system: (p) => !!(p.servers || p.services || p.issues),
+  system: (p) => !!(p.servers || p.services || p.issues || (p.checks as Record<string, unknown>)?.power),
   health: (p) => !!(p.data || p.message),
 };
 

@@ -1,4 +1,5 @@
 import { McPill } from "../mc";
+import PowerMonitoringCard from "./PowerMonitoringCard";
 import type { ActivityCardProps } from "./index";
 
 const STATUS_ICON: Record<string, string> = { ok: "\u2705", warning: "\u26A0\uFE0F", critical: "\u{1F6A8}" };
@@ -8,6 +9,10 @@ export default function SystemHealthCard({ detail }: ActivityCardProps) {
   const servers = p.servers || {};
   const services = p.services || {};
   const issues = p.issues || [];
+  const powerCheck = (p as Record<string, unknown>).checks
+    ? ((p as Record<string, unknown>).checks as Record<string, Record<string, unknown>>)?.power
+    : undefined;
+  const powerDetails = powerCheck?.details as Record<string, unknown> | undefined;
 
   return (
     <div className="space-y-3">
@@ -109,6 +114,15 @@ export default function SystemHealthCard({ detail }: ActivityCardProps) {
             })}
           </div>
         </div>
+      )}
+
+      {/* Power monitoring section */}
+      {powerDetails && (
+        <PowerMonitoringCard
+          details={powerDetails as Parameters<typeof PowerMonitoringCard>[0]["details"]}
+          status={powerCheck?.status as string | undefined}
+          message={powerCheck?.message as string | undefined}
+        />
       )}
     </div>
   );

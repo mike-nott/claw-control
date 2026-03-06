@@ -1,24 +1,7 @@
 import { useEffect, useState } from "react";
 import type { AgentConfig } from "../types";
 import { getAgentConfigs } from "../api";
-
-/* ------------------------------------------------------------------ */
-/*  Helpers                                                            */
-/* ------------------------------------------------------------------ */
-
-function shortModel(primary: string | undefined): string {
-  if (!primary) return "Unknown";
-  const name = primary.split("/").pop() ?? primary;
-  // Friendly display names
-  if (name.includes("opus-4-6")) return "Opus 4.6";
-  if (name.includes("sonnet-4-6")) return "Sonnet 4.6";
-  if (name.includes("haiku")) return "Haiku 4.5";
-  if (/qwen.*3\.5.*122/i.test(name)) return "Qwen3.5 122B";
-  if (/qwen.*3\.5.*35/i.test(name)) return "Qwen3.5 35B";
-  if (/qwen.*3.*30/i.test(name)) return "Qwen3 VL 30B";
-  if (/qwen/i.test(name)) return name;
-  return name;
-}
+import { friendlyModelName } from "../utils/modelNames";
 
 function hostFrom(primary: string | undefined): string {
   if (!primary) return "Unknown";
@@ -77,7 +60,7 @@ function AgentCard({ agent, style }: { agent: AgentConfig; style: CardStyle }) {
       <div className="text-[11px] leading-[1.5] mt-1.5" style={{ color: "var(--mc-text-muted)" }}>{agent.bio}</div>
       <div className="flex gap-2 mt-2 flex-wrap">
         <span className="text-[9px] px-2 py-0.5 rounded-full font-semibold bg-[rgba(96,165,250,0.12)] text-[#60a5fa] border border-[rgba(96,165,250,0.2)]">
-          {shortModel(agent.model?.primary)}
+          {friendlyModelName(agent.model?.primary ?? "")}
         </span>
         <span className="text-[9px] px-2 py-0.5 rounded-full font-semibold bg-[rgba(192,132,252,0.12)] text-[#c084fc] border border-[rgba(192,132,252,0.2)]">
           {hostFrom(agent.model?.primary)}

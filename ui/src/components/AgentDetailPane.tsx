@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { McPill } from "./mc";
 import type { AccessLevel, AgentConfig, AgentCronJob } from "../types";
+import { friendlyModelName } from "../utils/modelNames";
 
 interface SelectedBox {
   section: string;
@@ -352,17 +353,13 @@ function renderDetail(
   // ── Model — Primary ────────────────────────────────────────────
   if (section === "model" && key === "primary") {
     const raw = agent.model?.primary ?? "anthropic/claude-opus-4-6";
-    const { provider, model } = splitModel(raw);
     return (
       <div>
         <SectionHeader emoji="🧠" label="Primary Model" />
         <SectionDesc>The main language model this agent uses for reasoning and responses.</SectionDesc>
         <div className={TINT_CLASS.indigo}>
-          {provider && (
-            <div className="mc-tint-label">{provider}</div>
-          )}
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "18px", fontWeight: 600 }}>{model}</span>
+            <span style={{ fontSize: "18px", fontWeight: 600 }}>{friendlyModelName(raw)}</span>
             {agent.default && (
               <McPill variant="primary" size="xs">default agent</McPill>
             )}
@@ -396,7 +393,6 @@ function renderDetail(
             />
             <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
               {fallbacks.map((fb, i) => {
-                const { provider, model } = splitModel(fb);
                 return (
                   <div key={i} style={{ position: "relative", paddingLeft: "24px" }}>
                     <div
@@ -410,10 +406,7 @@ function renderDetail(
                       <McPill variant="ghost" size="xs">{i + 1}</McPill>
                     </div>
                     <div className={TINT_CLASS.cyan}>
-                      {provider && (
-                        <div className="mc-tint-label">{provider}</div>
-                      )}
-                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{model}</div>
+                      <div style={{ fontSize: "13px", fontWeight: 600 }}>{friendlyModelName(fb)}</div>
                     </div>
                   </div>
                 );

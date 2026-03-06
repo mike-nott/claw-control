@@ -2,7 +2,8 @@ import { useCallback, useSyncExternalStore } from "react";
 import { NavLink } from "react-router-dom";
 
 const NAV_ITEMS = [
-  { to: "/", label: "Tasks" },
+  { to: "/", label: "Status" },
+  { to: "/tasks", label: "Tasks" },
   { to: "/schedule", label: "Schedule" },
   { to: "/activity", label: "Activity" },
   { to: "/tokens", label: "Tokens" },

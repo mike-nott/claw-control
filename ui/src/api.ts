@@ -14,6 +14,7 @@ import type {
   ProjectCredential,
   ScheduleDetail,
   ScheduleEntry,
+  StatusResponse,
   SyncQueueResult,
   Task,
   TaskAttachment,
@@ -194,6 +195,10 @@ export async function getTokensTimeseries(range: string, agent?: string, model?:
   if (agent) params.set("agent", agent);
   if (model) params.set("model", model);
   return request<Record<string, unknown>[]>(`/api/tokens/timeseries?${params}`);
+}
+
+export function getStatus(): Promise<StatusResponse> {
+  return request<StatusResponse>("/api/status");
 }
 
 export function getAgentConfigs(): Promise<AgentConfig[]> {

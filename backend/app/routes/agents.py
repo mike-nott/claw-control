@@ -67,12 +67,16 @@ async def list_agents_config() -> list[dict]:
         tools_allow = agent.get("tools", {}).get("allow", []) if agent.get("tools") else (None if is_main else [])
 
         # Build model dict
+        # OpenClaw supports two formats:
+        #   model: {primary: "x", fallbacks: ["y"]}   (dict with fallbacks inline)
+        #   model: "x" + fallbackModels: ["y"]         (flat string + separate key)
         model = None
         if model_raw:
             if isinstance(model_raw, dict):
                 model = {"primary": model_raw.get("primary"), "fallbacks": model_raw.get("fallbacks", [])}
             else:
-                model = {"primary": str(model_raw), "fallbacks": []}
+                fallbacks = agent.get("fallbackModels") or agents_defaults.get("fallbackModels") or []
+                model = {"primary": str(model_raw), "fallbacks": fallbacks}
 
         # Build cron jobs
         cron_jobs = []

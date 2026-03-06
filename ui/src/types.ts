@@ -282,6 +282,105 @@ export type SyncQueueResult = {
   expired: number;
 };
 
+// Status page types
+
+export interface StatusGatewaySession {
+  key: string;
+  model: string | null;
+  context_tokens: number;
+  context_max: number;
+  context_percent: number;
+  compactions: number;
+}
+
+export type StatusGateway = {
+  status: "ok" | "down";
+  active: boolean;
+  uptime_seconds: number | null;
+  memory_mb: number | null;
+  version: string | null;
+  pid: number | null;
+  session: StatusGatewaySession | null;
+};
+
+export type StatusLlmMetrics = {
+  gen_tokens_per_sec: number | null;
+  prompt_tokens_per_sec?: number | null;
+  requests_running: number;
+  requests_waiting?: number;
+  prompt_tokens_total: number;
+  gen_tokens_total: number;
+  cache_hits_total?: number;
+};
+
+export type StatusGpu = {
+  name: string | null;
+  proc: number | null;
+  mem: number | null;
+  temp: number | null;
+  fan: number | null;
+};
+
+export type StatusGlances = {
+  cpu_percent: number | null;
+  ram_percent: number | null;
+  gpu?: StatusGpu;
+};
+
+export type StatusLlmServer = {
+  name: string;
+  host: string;
+  port: number;
+  status: "ok" | "down" | "loading";
+  active: boolean;
+  model: string | null;
+  runtime: string;
+  response_ms: number | null;
+  metrics: StatusLlmMetrics | null;
+  glances: StatusGlances | null;
+};
+
+export type StatusService = {
+  name: string;
+  status: "ok" | "down";
+  response_ms: number | null;
+};
+
+export type StatusAgent = {
+  id: string;
+  name: string;
+  emoji: string | null;
+  status: string;
+  model: { primary: string; fallbacks: string[] } | null;
+  current_provider: string | null;
+  last_seen_at: string | null;
+};
+
+export type StatusAgents = {
+  total: number;
+  active: number;
+  idle: number;
+  error: number;
+  agents: StatusAgent[];
+};
+
+export type StatusCron = {
+  total: number;
+  ok: number;
+  late: number;
+  error: number;
+  schedules: ScheduleEntry[];
+};
+
+export type StatusResponse = {
+  ts: string;
+  gateway: StatusGateway;
+  llm_servers: StatusLlmServer[];
+  services: StatusService[];
+  agents: StatusAgents;
+  cron: StatusCron;
+};
+
 export type AccessLevel = "R" | "W" | "RW" | true;
 
 export interface AgentCronJob {
